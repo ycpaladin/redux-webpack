@@ -15,10 +15,35 @@ export function addItem(item) {
 }
 
 
-export function deleteItem(item) {
+export function deleteItem(index) {
     return {
         type: actionTypes.DELETE_ITEM,
-        value: item
+        index: index
     }
 }
 
+
+
+
+export function updateItem(id, text) {
+    return {
+        type: actionTypes.UPDATE_ITEM,
+        value: {
+            index: id,
+            newValue: text
+        }
+
+    }
+}
+
+// export function create(text) {
+//     return {
+//         type: actionTypes.TODO_CREATE,
+//         text: text
+//     }
+// }
+
+
+// export function name(params) {
+
+// }

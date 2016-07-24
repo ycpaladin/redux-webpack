@@ -1,27 +1,36 @@
 import React, { Component } from 'react'
-
+import ListItem from './ListItem'
 class Content extends Component {
 
     render() {
-        let Items = this.props.items.toArray().map((item,index) => <ListItem item={item} key={index} deleteItem={this.props.deleteItem} />);
+        let Items = this.props.items.toArray().map((item, index) =>
+            <ListItem
+                text={item}
+                key={index}
+                index={index}
+                deleteItem={this.props.deleteItem}
+                updateItem={this.props.updateItem}
+                complete={true}
+                />);
         return (
-            <ul>
-                {Items}
-            </ul>
+            <section id="main">
+                <input
+                    id="toggle-all"
+                    type="checkbox"
+                    onChange={this._onToggleCompleteAll}
+                    checked={this.props.areAllComplete ? 'checked' : ''}
+                    />
+                <ul id="todo-list">
+                    {Items}
+                </ul>
+            </section> 
         )
     }
-}
 
-class ListItem extends Component {
+    _onToggleCompleteAll() {
 
-    render() {
-        return (
-            <li>
-                <span>{this.props.item}</span>
-                <input type="button" value="删除" onClick={this.props.deleteItem.bind(this, this.props.item) } />
-            </li>
-        )
     }
+
 }
 
 

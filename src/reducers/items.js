@@ -8,7 +8,10 @@ export default function items(state = initialItems, action) {
         case actionTypes.ADD_ITEM:
             return state.push(action.value);
         case actionTypes.DELETE_ITEM:
-            return state.delete(state.indexOf(action.value))
+            return state.delete(action.index)
+        case action.UPDATE_ITEM:
+            state[action.index] = action.newValue;
+            return state;
         case actionTypes.DELETE_ALL:
             return state.clear();
         default:

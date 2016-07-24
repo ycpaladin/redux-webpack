@@ -11,7 +11,7 @@ class App extends Component {
         return (
             <div>
                 <AddPanle addItem={actions.addItem}/>
-                <Content items={this.props.items} deleteItem={actions.deleteItem} />
+                <Content items={this.props.items} deleteItem={actions.deleteItem} updateItem={actions.updateItem}/>
             </div>
 
         )

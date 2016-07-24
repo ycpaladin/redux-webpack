@@ -1,8 +1,10 @@
 import {combineReducers} from 'redux'
 import items from './items'
+import itemState from './item'
 
 const rootReducer = combineReducers({
-    items
+    items,
+    itemState
 })
 
 export default rootReducer

@@ -7,13 +7,13 @@ import configureStore from  './configureStore'
 // import inputApp from './reducers'
 
 
-import  '!style!css!bootstrap/dist/css/bootstrap.min.css'
-
+import  '!style!css!../css/base.css'
+import  '!style!css!../css/app.css'
 let store = configureStore();
 
 render(
   <Provider store={store}>
     <App />
   </Provider>,
-  document.querySelector("#app")
+  document.querySelector("#todoapp")
 );
