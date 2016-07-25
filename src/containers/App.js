@@ -11,7 +11,16 @@ class App extends Component {
         return (
             <div>
                 <AddPanle addItem={actions.addItem}/>
-                <Content items={this.props.items} deleteItem={actions.deleteItem} updateItem={actions.updateItem}/>
+                <Content
+                    items={this.props.items}
+                    areAllComplete={this.props.areAllComplete}
+                    deleteItem={actions.deleteItem}
+                    updateItem={actions.updateItem}
+                    changeEditState={actions.changeEditState}
+                    changeCompletedState={actions.changeCompletedState}
+                    setAllChecked={actions.setAllChecked}
+                    allComplete={actions.allComplete}
+                    />
             </div>
 
         )
@@ -20,7 +29,8 @@ class App extends Component {
 
 
 export default connect(state => ({
-    items: state.items
+    items: state.items.items,
+    areAllComplete: state.items.allComplete
 }), dispatch => ({
     actions: bindActionCreators(ItemActions, dispatch)
 }))(App)

@@ -1,10 +1,3 @@
-// //定义一个change方法，将来把它绑定到props上
-// export function change(value){
-//     return{
-//         type:"change",
-//         value:value
-//     }
-// }
 import actionTypes from '../constants/actionTypes'
 
 export function addItem(item) {
@@ -23,27 +16,41 @@ export function deleteItem(index) {
 }
 
 
-
-
 export function updateItem(id, text) {
     return {
         type: actionTypes.UPDATE_ITEM,
-        value: {
-            index: id,
-            newValue: text
-        }
-
+        index: id,
+        newValue: text
     }
 }
 
-// export function create(text) {
-//     return {
-//         type: actionTypes.TODO_CREATE,
-//         text: text
-//     }
-// }
 
+export function changeEditState(index, isEditing) {
+    return {
+        type: actionTypes.CHANGE_EDIT_STATE,
+        index: index,
+        isEditing: isEditing
+    }
+}
 
-// export function name(params) {
+export function changeCompletedState(index, isCompleted) {
+    return {
+        type: actionTypes.CURRENT_COMPLETED_STATE,
+        index,
+        isCompleted
+    }
+}
 
-// }
+export function setAllChecked(isCompleted) {
+    return {
+        type: actionTypes.SET_ALL_CHECKED,
+        isCompleted
+    }
+}
+
+export function allComplete(items) {
+    return {
+        type: actionTypes.ALL_COMPLETE,
+        items
+    }
+}

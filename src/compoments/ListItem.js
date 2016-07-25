@@ -1,44 +1,20 @@
 import React, { Component } from 'react'
-import * as item from  '../actions/item'
 import {connect} from  'react-redux'
 import { bindActionCreators } from 'redux'
 import classNames  from 'classnames';
+import ListItemEditInput from  './ListItemEditInput'
 
 class ListItem extends Component {
-
-   
-    // render() {
-    //     return (
-    //         <li>
-    //             <span>{this.props.item}</span>
-    //             <input type="button" value="删除" onClick={this.props.deleteItem.bind(this, this.props.index) } />
-    //         </li>
-    //     )
-    // }
-
-    // getInitialState() {
-    //     return { isEditing: false };
-    // }
-
-
-
     render() {
-
-        if (!this.state) {
-            this.state = { isEditing: false };
-        }
-
-        var item = this.props;
-        var actions = item.actions;
+        var props = this.props;
+        var item = props.item;
         var input;
-        if (this.state.isEditing) {
+        if (item.isEditing) {
             input =
-                <ListItemInput
+                <ListItemEditInput
                     className="edit"
-                    index={item.index}
-                    value={item.text}
-                    updateItem={item.updateItem}
-                    complete={(e) =>this.complete()}
+                    {...props}
+                    complete={(e) => this.complete() }
                     />;
         }
 
@@ -46,7 +22,7 @@ class ListItem extends Component {
             <li
                 className={classNames({
                     'completed': item.complete,
-                    'editing': this.state.isEditing
+                    'editing': item.isEditing
                 }) }
                 key={item.id}>
                 <div className="view">
@@ -54,7 +30,8 @@ class ListItem extends Component {
                         className="toggle"
                         type="checkbox"
                         checked={item.complete}
-                        onChange={this._onToggleComplete}
+                        onChange={e=>this._onToggleComplete(e)}
+                        ref="checkbox"
                         />
                     <label onDoubleClick={(e) => this._onDoubleClick() }>
                         {item.text}
@@ -66,62 +43,25 @@ class ListItem extends Component {
         );
     }
 
-
     _onDoubleClick() {
+        // this.setState({ isEditing: true })
 
-        // this.props.actions.changeEditState(true);
-        this.setState({ isEditing: true })
+        this.props.changeEditState(this.props.index, true);
     }
 
-    _onToggleComplete() {
-
-    }
-
-    _onDestroyClick() {
-
+    _onToggleComplete(e) {
+        var checkbox = this.refs.checkbox;
+         this.props.changeCompletedState(this.props.index, checkbox.checked);
+        //  this.props.allComplete();
     }
 
     complete() {
-        this.setState({ isEditing: false })
+          this.props.changeEditState(this.props.index, false);
+        //this.setState({ isEditing: false })
     }
 }
 
 
-class ListItemInput extends Component {
-
-    render() {
-        return (
-            <input type="text"
-                className={this.props.className}
-                id={this.props.id}
-                placeholder={this.props.placeholder}
-                onBlur={(e) => this._save() }
-                // onChange={this._handerChange}
-                onkeydown={this._handerKeyDown}
-                value={this.props.value}
-                autoFocus={true}
-                ref="input"
-                />
-        );
-    }
-
-    _save() {
-        var input = this.refs.input;
-        this.props.updateItem(this.props.index, input.value);
-        input.value = '';
-        this.props.complete();
-    }
-
-    _handerChange(e) {
-
-    }
-
-    _handerKeyDown(e) {
-        if (e.keyCode === 13) {
-            this._save();
-        }
-    }
-}
 
 
 export default ListItem

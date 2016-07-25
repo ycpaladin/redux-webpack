@@ -31,6 +31,7 @@ class AddItem extends Component {
                     id="new-todo"
                     placeholder="What needs to be done?"
                     addItem={this.props.addItem}
+                    allCompleted={this.props.allCompleted}
                     />
             </header>
         );
