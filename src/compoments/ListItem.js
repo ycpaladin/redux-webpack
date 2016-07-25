@@ -9,6 +9,8 @@ class ListItem extends Component {
         var props = this.props;
         var item = props.item;
         var input;
+
+        console.log('render.....');
         if (item.isEditing) {
             input =
                 <ListItemEditInput
@@ -44,20 +46,16 @@ class ListItem extends Component {
     }
 
     _onDoubleClick() {
-        // this.setState({ isEditing: true })
-
         this.props.changeEditState(this.props.index, true);
     }
 
     _onToggleComplete(e) {
         var checkbox = this.refs.checkbox;
          this.props.changeCompletedState(this.props.index, checkbox.checked);
-        //  this.props.allComplete();
     }
 
     complete() {
           this.props.changeEditState(this.props.index, false);
-        //this.setState({ isEditing: false })
     }
 }
 

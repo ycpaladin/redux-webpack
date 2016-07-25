@@ -18,8 +18,8 @@ function assign(item, newValue) {
 
 
 function checkAllComplete(items) {
-    var result = items.filter((item, index) => item.complete == true);
-    return result.size == items.size
+    var completedCount = items.count((item, index) => item.complete == true);
+    return completedCount == items.size
 }
 
 export default function items(state = initialItems, action) {
