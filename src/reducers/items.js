@@ -22,6 +22,9 @@ function checkAllComplete(items) {
     return completedCount == items.size
 }
 
+/**
+ * 针对下面的Immutable对象进行增删改查方法应该如何优化？
+ */
 export default function items(state = initialItems, action) {
     switch (action.type) {
         case actionTypes.ADD_ITEM:
