@@ -14,7 +14,7 @@ class ListItemEditInput extends Component {
                 placeholder={this.props.placeholder}
                 onBlur={(e) => this._save() }
                 onChange={ e => this._handerChange(e) }
-                onkeydown={ e => this._handerKeyDown(e) }
+                onKeyDown={ e => this._handerKeyDown(e) }
                 value={this.state.text}
                 autoFocus={true}
                 ref="input"

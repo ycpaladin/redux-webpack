@@ -46,6 +46,17 @@ export default function items(state = initialItems, action) {
                 allComplete: action.isCompleted,
                 items: allItems
             };
+        case actionTypes.DESTORY_COMPLETED:
+            if (action.indexAsArray.length) {
+                var items = state.items;
+                var array = action.indexAsArray.reverse();
+                for (var i = 0; i < array.length; i++) {
+                    items = items.delete(array[i]);
+                }
+                return assign(state, { items: items });;
+            } else {
+                return state;
+            }
         default:
             return state;
     }

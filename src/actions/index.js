@@ -54,3 +54,10 @@ export function allComplete(items) {
         items
     }
 }
+
+export function destroyCompleted(indexAsArray) {
+    return {
+        type: actionTypes.DESTORY_COMPLETED,
+        indexAsArray
+    }
+}
