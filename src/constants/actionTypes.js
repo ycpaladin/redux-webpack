@@ -18,5 +18,6 @@ module.exports = keyMirror({
   CURRENT_COMPLETED_STATE: null,
   ALL_COMPLETE: null,
   SET_ALL_CHECKED: null,
-  DESTORY_COMPLETED: null
+  DESTORY_COMPLETED: null,
+  ITEM_LOADING: null
 });

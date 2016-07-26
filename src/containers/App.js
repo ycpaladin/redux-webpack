@@ -29,10 +29,15 @@ class App extends Component {
     }
 }
 
+function checkAllComplete(items) {
+    var completedCount = items.count((item, index) => item.complete == true);
+    return completedCount == items.size
+}
+
 
 export default connect(state => ({
-    items: state.items.items,
-    areAllComplete: state.items.allComplete
+    items: state.items,
+    areAllComplete: checkAllComplete(state.items)  //state.items.allComplete
 }), dispatch => ({
     actions: bindActionCreators(ItemActions, dispatch)
 }))(App)
